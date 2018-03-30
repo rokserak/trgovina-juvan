@@ -1,0 +1,16 @@
+body{
+    font-family: 'Exo 2', sans-serif;
+	background-color: #FFE5C5;
+}
+
+.karta{
+	background-color: #E3E1C2;
+	padding-left:13px;
+	padding-right:13px;
+	padding-top: 13px;
+}
+
+.gumb{
+	background-color: #5D3C91;
+	color: #ffffff;
+}
