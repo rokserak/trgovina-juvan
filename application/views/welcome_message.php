@@ -50,7 +50,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     <form class="px-4 py-3">
                                       <div class="form-group">
                                         <label for="exampleDropdownFormEmail1">Uporabniško ime</label>
-                                        <input type="email" class="form-control" id="exampleDropdownFormEmail1" placeholder="ime">
+                                        <input type="text" class="form-control" id="exampleDropdownFormEmail1" placeholder="ime">
                                       </div>
                                       <div class="form-group">
                                         <label for="exampleDropdownFormPassword1">Geslo</label>
@@ -70,13 +70,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     </button>
                                     <div class="dropdown-menu dropdown-menu-right">
                                         <h3 class="pl-3">Izdelki</h3>
-                                        <div class="dropdown-divider"></div>
-                                      <button class="dropdown-item" type="button">Action</button>
-                                      <div class="dropdown-divider"></div>
-                                      <button class="dropdown-item" type="button">Another action</button>
-                                      <div class="dropdown-divider"></div>
-                                      <button class="dropdown-item" type="button">Something else here</button>
+                                        <div ng-repeat="kos in kosarica track by $index">
+                                            <div class="dropdown-divider"></div>
+                                            <button class="dropdown-item" type="button">{{artikli[kos].ime}}</button>
+                                            
                                     </div>
+                                </div>
                                 </div>
                 </nav>
             </div>
@@ -101,70 +100,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     {{art.opis}}
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary">Save changes</button>
+                                    <button type="button" class="btn gumb" data-dismiss="modal">Zapri</button>
+                                    <button ng-click="dodaj($index)" class="btn gumb">Dodaj v kosarico</button>
                                 </div>
                                 </div>
                             </div>
                             </div>
-                        <a href="#" class="btn gumb">Go cart</a>
+                        <button ng-click="dodaj($index)" class="btn gumb">Dodaj v kosarico</button>
                     </div>
                 </div>
             </div>
-            <!--
-            <div class="col m-1">
-                <div class="card mx-auto" style="width: 18rem;">
-                    <img class="card-img-top" src="ostro.jpg" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <a href="#" class="btn btn-primary">description</a>
-                        <a href="#" class="btn btn-primary">Go cart</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col m-1">
-                <div class="card mx-auto" style="width: 18rem;">
-                    <img class="card-img-top" src="ostro.jpg" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <a href="#" class="btn btn-primary">description</a>
-                        <a href="#" class="btn btn-primary">Go cart</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row py-1">
-            <div class="col m-1">
-                <div class="card mx-auto" style="width: 18rem;">
-                    <img class="card-img-top" src="ostro.jpg" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <a href="#" class="btn btn-primary">description</a>
-                        <a href="#" class="btn btn-primary">Go cart</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col m-1">
-                <div class="card mx-auto" style="width: 18rem;">
-                    <img class="card-img-top" src="ostro.jpg" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <a href="#" class="btn btn-primary">description</a>
-                        <a href="#" class="btn btn-primary">Go cart</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col m-1">
-                <div class="card mx-auto" style="width: 18rem;">
-                    <img class="card-img-top" src="ostro.jpg" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <a href="#" class="btn btn-primary">description</a>
-                        <a href="#" class="btn btn-primary">Go cart</a>
-                    </div>
-                </div>
-            </div>
-            !-->
         </div>
     </div>
 
@@ -182,8 +127,25 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     $http.get("index.php/Artikli/getArtikli").then(function(data) {
                         console.log('dela');
                         $scope.artikli = data.data;
+                        $scope.kosarica = [];
                     });
+
+                    $scope.dodaj = function(id){
+                        if($scope.artikli[id].zaloga != 0){
+                            $scope.kosarica.push(id);
+                            $scope.artikli[id].zaloga -= 1;
+
+                            
+
+                        }        
+                       
+                        
+                    }
+
+                    
                 });
+
+               
 
     </script>
 </body>
