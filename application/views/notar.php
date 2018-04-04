@@ -13,7 +13,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="/data/trgovina.css">
 
-   
+    
 
     <title>Juvan HUMAN shop</title>
   </head>
@@ -42,27 +42,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         </li>
                         </ul>
                     </div>
-                    <div class="dropdown">
-                                <button class="btn btn-secondary dropdown-toggle " type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                  Prijava
-                                </button>
-                                <div class="dropdown-menu">
-                                    <form class="px-4 py-3" action="index.php/Prijava/vstop" method="POST">
-                                      <div class="form-group">
-                                        <label for="exampleDropdownFormEmail1">Uporabniško ime</label>
-                                        <input type="text" class="form-control" id="uporabnik" placeholder="ime" name="uporabnik">
-                                      </div>
-                                      <div class="form-group">
-                                        <label for="exampleDropdownFormPassword1">Geslo</label>
-                                        <input type="password" class="form-control" id="geslo" placeholder="Geslo" name="geslo">
-                                      </div>
-                                
-                                      <button type="submit" class="btn btn-primary">Prijavi se</button>
-                                    </form>
-                                    <div class="dropdown-divider"></div>
-                                    <button class="dropdown-item" data-toggle="modal" data-target="#registracija">Registriraj se</button>
-                                    
-                                    </div>
+                   
 
                                         <div class="modal fade" id="registracija" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                             <div class="modal-dialog modal-dialog-centered" role="document">
@@ -77,11 +57,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                     <form class="px-4 py-3" action="index.php/Prijava/registracija">
                                                         <div class="form-group">
                                                             <label for="exampleDropdownFormEmail1">Uporabniško ime</label>
-                                                            <input type="text" class="form-control" id="uporabnikR" placeholder="ime">
+                                                            <input type="text" class="form-control" id="uporabnik" placeholder="ime">
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="exampleDropdownFormPassword1">Geslo</label>
-                                                            <input type="password" class="form-control" id="gesloR" placeholder="Geslo">
+                                                            <input type="password" class="form-control" id="geslo" placeholder="Geslo">
                                                         </div>
                                                     
                                                     
@@ -96,7 +76,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             </div>
                                             </div>
                               
-                              
+                              <div class="btn-group ml-2">
+                                    <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                      Košarica
+                                    </button>
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <h3 class="pl-3">Izdelki</h3>
+                                        <div ng-repeat="kos in kosarica track by $index">
+                                            <div class="dropdown-divider"></div>
+                                            <button class="dropdown-item" type="button">{{artikli[kos].ime}}</button>
+                                            
+                                    </div>
+                                </div>
+                                </div>
                 </nav>
             </div>
         </div>
@@ -126,9 +118,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 </div>
                             </div>
                             </div>
-                            <button type="button" id="pop" class="btn gumb " data-container="body" data-toggle="popover" data-placement="top" title="dodaj v košarico" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
-                                Popover on top
-                            </button>
+                        <button ng-click="dodaj($index)" class="btn gumb">Dodaj v kosarico</button>
                     </div>
                 </div>
             </div>
@@ -142,12 +132,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script src="/data/angular.min.js"></script>
     <script>
-        
-        
-
-
-
-
         
 
     var app = angular.module("myapp", []);

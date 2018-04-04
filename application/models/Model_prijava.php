@@ -15,6 +15,17 @@ class Model_prijava extends CI_Model {
         //$this->db->close();
     }
 
-	
+    public function vnesi($ime, $geslo)
+	{
+        $this->load->database();#povezemo na bazo
+        $niz = 'INSERT INTO UPORABNIKI(`uporabnik`,`geslo`) VALUES ("'.$ime.'","'.$geslo.'")';
+        echo $niz;
+        
+        $query=$this->db->query($niz);
+       
+        
+       
+        
+	}
 
 }

@@ -21,21 +21,22 @@ class Prijava extends CI_Controller {
 	public function index()
 	{
 		
-		$this->load->view('prijava'); #na pogled pozdravljeni posljemo polje data
+		
     }
     
     public function vstop()
     {
-        echo "vstop dela!";
+		$this->load->helper('url');
+		$this->load->library('user_agent');
         $vsiPodatki=$this->input->post(); #vse iz obrazca gre v to spremenljivko
         $this->load->model('model_prijava'); //"Model_prijava.php"
 		$rezultat = $this->model_prijava->vstop($vsiPodatki['uporabnik'], $vsiPodatki['geslo']); #poklicemo metodo preveri
 		if($rezultat){
 			$this->session->set_userdata('uporabnik',$vsiPodatki['uporabnik']);
-			$this->load->view('welcome_message');
+			$this->load->view('notar'); 
 		}else{
 			echo 'napaka';
-			$this->load->view('welcome_message');
+			redirect($this->agent->referrer());
 		}
 
 		
