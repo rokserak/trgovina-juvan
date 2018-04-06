@@ -33,6 +33,7 @@ class Prijava extends CI_Controller {
 		$rezultat = $this->model_prijava->vstop($vsiPodatki['uporabnik'], $vsiPodatki['geslo']); #poklicemo metodo preveri
 		if($rezultat){
 			$this->session->set_userdata('uporabnik',$vsiPodatki['uporabnik']);
+			$this->session->set_userdata('id',$rezultat['id']);
 			$this->load->view('notar'); 
 		}else{
 			echo 'napaka';
@@ -41,7 +42,17 @@ class Prijava extends CI_Controller {
 
 		
 
-    }
+	}
+	
+	public function registracija(){
+
+		$this->load->helper('url');
+		$this->load->library('user_agent');
+        $vsiPodatki=$this->input->post(); #vse iz obrazca gre v to spremenljivko
+        $this->load->model('model_prijava'); //"Model_prijava.php"
+		$this->model_prijava->vnesi($vsiPodatki['uporabnikR'], $vsiPodatki['gesloR']);
+		redirect($this->agent->referrer());
+	}
 
 	
 

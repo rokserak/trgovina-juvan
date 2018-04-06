@@ -74,14 +74,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                     </button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <form class="px-4 py-3" action="index.php/Prijava/registracija">
+                                                    <form class="px-4 py-3" action="index.php/Prijava/registracija" method="POST">
                                                         <div class="form-group">
                                                             <label for="exampleDropdownFormEmail1">Uporabniško ime</label>
-                                                            <input type="text" class="form-control" id="uporabnikR" placeholder="ime">
+                                                            <input type="text" class="form-control" name="uporabnikR" placeholder="ime">
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="exampleDropdownFormPassword1">Geslo</label>
-                                                            <input type="password" class="form-control" id="gesloR" placeholder="Geslo">
+                                                            <input type="password" class="form-control" name="gesloR" placeholder="Geslo">
                                                         </div>
                                                     
                                                     

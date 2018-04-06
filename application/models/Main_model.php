@@ -13,4 +13,14 @@ class Main_model extends CI_Model {
     return $results;
   }
 
+  function dodaj($art, $id){
+
+    $this->load->database();#povezemo na bazo
+    $niz = 'INSERT INTO `kosarica`(`artikel_idartikel`, `uporabniki_iduporabniki`) VALUES (' . $art . ', ' . $id .')';
+    echo $niz;
+    
+    $query=$this->db->query($niz);
+
+  }
+
 }

@@ -43,38 +43,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         </ul>
                     </div>
                    
-
-                                        <div class="modal fade" id="registracija" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                                            <div class="modal-dialog modal-dialog-centered" role="document">
-                                                <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLongTitle">Registracija</h5>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <form class="px-4 py-3" action="index.php/Prijava/registracija">
-                                                        <div class="form-group">
-                                                            <label for="exampleDropdownFormEmail1">Uporabniško ime</label>
-                                                            <input type="text" class="form-control" id="uporabnik" placeholder="ime">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label for="exampleDropdownFormPassword1">Geslo</label>
-                                                            <input type="password" class="form-control" id="geslo" placeholder="Geslo">
-                                                        </div>
-                                                    
-                                                    
-                                                        
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn gumb" data-dismiss="modal">Zapri</button>
-                                                    <button type="submit" class="btn gumb">Registriraj se</button>
-                                                    </form>
-                                                </div>
-                                                </div>
-                                            </div>
-                                            </div>
+                    <div class="btn-group ml-2">
+                                    <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <?php echo $_SESSION['uporabnik'] ?>
+                                    </button>
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                    
+                                    
+                                            <div class="dropdown-divider"></div>
+                                            <a href="/"><button class="dropdown-item" type="button">odjava</button></a>
+                                            
+                                
+                                </div>
+                                </div>
+                                       
                               
                               <div class="btn-group ml-2">
                                     <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -125,6 +107,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         </div>
     </div>
 
+    <?php
+$variablephp = $_SESSION['iduporabniki'];
+?>
+
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -146,7 +132,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         if($scope.artikli[id].zaloga != 0){
                             $scope.kosarica.push(id);
                             $scope.artikli[id].zaloga -= 1;
+                            
 
+                                $http({
+                                    method: 'POST',
+                                    url: "http://localhost:8080/index.php/Kosarica/dodajKosarica",
+                                    headers: {'Content-Type': 'application/json'},
+                                    data: JSON.stringify({art: $scope.artikli[id].idartikel, id: "<?php echo $variablephp; ?>" })
+                                });
                             
 
                         }        
