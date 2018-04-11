@@ -9,7 +9,13 @@ class Model_prijava extends CI_Model {
         echo '<br>';
        # echo "stevilo uporabnikov v bazi je: " . $query->num_rows(); //dobimo st vrstic
         if($query->num_rows()!=0){
-             return TRUE;
+            if($query->row('admin') == 1){
+                return 2;
+            }else{
+                return 1;
+             $this->session->set_userdata('id',$rezultat['iduporabniki']);
+            }
+
         }
         return FALSE;
         //$this->db->close();

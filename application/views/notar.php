@@ -107,9 +107,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         </div>
     </div>
 
-    <?php
-$variablephp = $_SESSION['iduporabniki'];
-?>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -126,20 +123,27 @@ $variablephp = $_SESSION['iduporabniki'];
                         console.log('dela');
                         $scope.artikli = data.data;
                         $scope.kosarica = [];
+                        console.log(data.data[1]);
                     });
 
                     $scope.dodaj = function(id){
                         if($scope.artikli[id].zaloga != 0){
                             $scope.kosarica.push(id);
                             $scope.artikli[id].zaloga -= 1;
-                            
 
-                                $http({
+
+                            $http({
                                     method: 'POST',
                                     url: "http://localhost:8080/index.php/Kosarica/dodajKosarica",
-                                    headers: {'Content-Type': 'application/json'},
-                                    data: JSON.stringify({art: $scope.artikli[id].idartikel, id: "<?php echo $variablephp; ?>" })
+                                    headers: {'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'},
+                                    data: JSON.stringify({art: $scope.artikli[id].idartikel, id: `<?php echo $_SESSION['id']; ?>` })
                                 });
+
+                            
+                                
+
+                                
+                                
                             
 
                         }        

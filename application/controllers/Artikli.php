@@ -28,4 +28,11 @@ class Artikli extends CI_Controller {
     echo json_encode($data);
   }
 
+  public function admin(){
+    // get data
+    $data = $this->Main_model->admin();
+    
+    echo json_encode($data);
+  }
+
 }

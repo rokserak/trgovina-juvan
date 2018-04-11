@@ -10,6 +10,21 @@ class Main_model extends CI_Model {
     $results = $q->result_array();
     //header('Content-Type: application/json');
 
+    //$this->load->database(); //povezava v bazo
+    //$query = $this->db->query('select * from kosarica where ime="'.$ime.'" and geslo="'.$geslo.'"');
+
+    //$this->db->select('artikel_idartikel');
+    //$q2 = $this->db->get_where('kosarica', array('uporabniki_iduporabniki' => "1"));
+    //$results2 = $q2->result_array();
+
+    //$aa = array();
+    //foreach($results2 as $res){
+      //$aa.array_push($res->artikel_idartikel);
+    //}
+
+    //$vrni = array($results, $aa);
+
+
     return $results;
   }
 
@@ -21,6 +36,18 @@ class Main_model extends CI_Model {
     
     $query=$this->db->query($niz);
 
+  }
+
+  function admin(){
+    $query = $this->db->query("SELECT * FROM uporabniki WHERE admin LIKE 'NULL'");
+    $query1 = $query->result_array();
+    $art = array();
+    foreach ($query1 as $u) {
+      $a = $this->db->query('select * from kosarica join artikel on kosarica.artikel_idartikel = artikel.idartikel where uporabniki_iduporabniki = ' + $u['iduporabniki']);
+      $a = $a->result_array();
+      $art.push($a);
+    }
+    return array($query1, $art);
   }
 
 }
