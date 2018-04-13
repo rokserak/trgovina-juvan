@@ -47,7 +47,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                   Prijava
                                 </button>
                                 <div class="dropdown-menu">
-                                    <form class="px-4 py-3" action="index.php/Prijava/vstop" method="POST">
+                                    <form class="px-4 py-3" action="/index.php/Prijava/vstop" method="POST">
                                       <div class="form-group">
                                         <label for="exampleDropdownFormEmail1">Uporabniško ime</label>
                                         <input type="text" class="form-control" id="uporabnik" placeholder="ime" name="uporabnik">

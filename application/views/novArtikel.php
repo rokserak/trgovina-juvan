@@ -25,21 +25,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarNav">
-                        <ul class="navbar-nav">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="http://localhost:8080/index.php/Kosarica/index">Home <span class="sr-only">(current)</span></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="http://localhost:8080/index.php/Kosarica/link">Dodaj artikel</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="http://localhost:8080/index.php/Kosarica/link2">BIzbriši artikel</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="http://localhost:8080/index.php/Kosarica/link3">Posodobi artikel</a>
-                        </li>
-                        </ul>
-                    </div>
+                    <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="http://localhost:8080/index.php/Kosarica/index">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="http://localhost:8080/index.php/Kosarica/link">Dodaj artikel</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="http://localhost:8080/index.php/Kosarica/link2">BIzbriši artikel</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="http://localhost:8080/index.php/Kosarica/link3">Posodobi artikel</a>
+                    </li>
+                    </ul>
+                </div>
                    
                     <div class="btn-group ml-2">
                                     <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -60,24 +60,26 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 </nav>
             </div>
 </div>      
-           
-
-            <div class="row">
-                <div class="col" ng-repeat="u in uporabniki track by $index" ng-init="sectionIndex = $index">
-                
-                <div class="card" style="width: 18rem;">
-                    <div class="card-body">
-                        <h5 class="card-title">{{u.ime}}</h5>
-                        <br>Izdelki:
+            
+            <form>
+                <div class="row">
+                    <div class="col-4"></div>
+                    <div class="col-4">
+                    <input type="text" class="form-control" placeholder="ime artikla"> 
+                    <input type="text" class="form-control" placeholder="opis artikla">
+                    <input type="text" class="form-control" placeholder="cena">
+                    <input type="text" class="form-control" placeholder="zaloga">
+                    <input type="text" class="form-control" placeholder="povezava do slika">
                     </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item" ng-repeat="k in kosarica[sectionIndex] track by $index">{{k.ime}}</li>
-                    </ul>
+                    <div class="col-4">
+                   
+                    </div>
+                    
                 </div>
-                
-                
-                </div>
-            </div>
+                </form>
+
+
+           
 
         </div>
 

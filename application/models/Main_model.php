@@ -39,13 +39,14 @@ class Main_model extends CI_Model {
   }
 
   function admin(){
-    $query = $this->db->query("SELECT * FROM uporabniki WHERE admin LIKE 'NULL'");
+    $this->load->database();
+    $query = $this->db->query("SELECT * FROM uporabniki WHERE admin <> TRUE");
     $query1 = $query->result_array();
     $art = array();
     foreach ($query1 as $u) {
-      $a = $this->db->query('select * from kosarica join artikel on kosarica.artikel_idartikel = artikel.idartikel where uporabniki_iduporabniki = ' + $u['iduporabniki']);
+      $a = $this->db->query('select * from kosarica join artikel on kosarica.artikel_idartikel = artikel.idartikel where uporabniki_iduporabniki = ' . $u['iduporabniki']);
       $a = $a->result_array();
-      $art.push($a);
+      array_push($art, $a);
     }
     return array($query1, $art);
   }

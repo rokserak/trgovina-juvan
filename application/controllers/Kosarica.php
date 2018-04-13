@@ -31,4 +31,21 @@ class Kosarica extends CI_Controller {
 
   }
 
+  public function link(){
+    $this->load->view('novArtikel');
+
+  }
+
+  public function link2(){
+    $this->load->view('izbrisiArtikel');
+
+  }
+
+  public function link3(){
+    $this->load->view('posodobiArtikel');
+
+  }
+
+
+
 }
