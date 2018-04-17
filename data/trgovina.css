@@ -8,6 +8,7 @@ body{
 	padding-left:13px;
 	padding-right:13px;
 	padding-top: 13px;
+	max-height: 50px;
 }
 
 .gumb{

@@ -23,8 +23,6 @@ class Main_model extends CI_Model {
     //}
 
     //$vrni = array($results, $aa);
-
-
     return $results;
   }
 

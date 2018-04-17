@@ -33,7 +33,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <a class="nav-link" href="http://localhost:8080/index.php/Kosarica/link">Dodaj artikel</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="http://localhost:8080/index.php/Kosarica/link2">BIzbriši artikel</a>
+                        <a class="nav-link" href="http://localhost:8080/index.php/Kosarica/link2">iZzbriši artikel</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="http://localhost:8080/index.php/Kosarica/link3">Posodobi artikel</a>

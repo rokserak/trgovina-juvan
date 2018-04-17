@@ -61,15 +61,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             </div>
 </div>      
             
-            <form>
+            <form action="/index.php/Admin/dodaj" method="POST">
                 <div class="row">
                     <div class="col-4"></div>
                     <div class="col-4">
-                    <input type="text" class="form-control" placeholder="ime artikla"> 
-                    <input type="text" class="form-control" placeholder="opis artikla">
-                    <input type="text" class="form-control" placeholder="cena">
-                    <input type="text" class="form-control" placeholder="zaloga">
-                    <input type="text" class="form-control" placeholder="povezava do slika">
+                    <input type="text" class="form-control" placeholder="ime artikla" name="imeA"> 
+                    <input type="text" class="form-control" placeholder="opis artikla" name="opis">
+                    <input type="text" class="form-control" placeholder="cena" name="cena">
+                    <input type="text" class="form-control" placeholder="zaloga" name="zaloga">
+                    <input type="text" class="form-control" placeholder="povezava do slika" name="link">
+                    <input type="submit" value="dodaj v bazo">
                     </div>
                     <div class="col-4">
                    

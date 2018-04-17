@@ -9,7 +9,7 @@ class Model_prijava extends CI_Model {
         echo '<br>';
        # echo "stevilo uporabnikov v bazi je: " . $query->num_rows(); //dobimo st vrstic
         if($query->num_rows()!=0){
-            if($query->row('admin') == 1){
+            if($query->first_row()->admin == 1){
                 return 2;
             }else{
                 return 1;

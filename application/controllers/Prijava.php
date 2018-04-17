@@ -29,20 +29,19 @@ class Prijava extends CI_Controller {
 		$this->load->helper('url');
 		$this->load->library('user_agent');
         $vsiPodatki=$this->input->post(); #vse iz obrazca gre v to spremenljivko
-        $this->load->model('model_prijava'); //"Model_prijava.php"
+		$this->load->model('model_prijava'); //"Model_prijava.php"
+		echo "naloz model";
 		$rezultat = $this->model_prijava->vstop($vsiPodatki['uporabnik'], $vsiPodatki['geslo']); #poklicemo metodo preveri
+		echo "izvede model";
 		if($rezultat == 1){
 			$this->session->set_userdata('uporabnik',$vsiPodatki['uporabnik']);
 			$this->load->database(); //povezava v bazo
 			$query = $this->db->query('select iduporabniki from uporabniki where ime="'.$vsiPodatki['uporabnik'].'" and geslo="'.$vsiPodatki['geslo'].'"');
-			$this->session->set_userdata('id', $query->row()->iduporabniki);    //tle ne dela!!!!!!!!!!!!!
+			$this->session->set_userdata('id', $query->row()->iduporabniki);    
 			$this->load->view('notar'); 
 		}if($rezultat == 2){
 			$this->session->set_userdata('uporabnik',$vsiPodatki['uporabnik']);
 			$this->load->view('admin');
-		}else{
-			echo 'napaka';
-			redirect($this->agent->referrer());
 		}
 
 		
