@@ -33,7 +33,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <a class="nav-link" href="http://localhost:8080/index.php/Kosarica/link">Dodaj artikel</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="http://localhost:8080/index.php/Kosarica/link2">BIzbriši artikel</a>
+                        <a class="nav-link" href="http://localhost:8080/index.php/Kosarica/link2">Izbriši artikel</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="http://localhost:8080/index.php/Kosarica/link3">Posodobi artikel</a>
@@ -70,7 +70,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <input type="text" class="form-control" placeholder="cena" name="cena">
                     <input type="text" class="form-control" placeholder="zaloga" name="zaloga">
                     <input type="text" class="form-control" placeholder="povezava do slika" name="link">
-                    <input type="submit" value="dodaj v bazo">
+                    <input class="btn m-2" type="submit" value="dodaj v bazo">
                     </div>
                     <div class="col-4">
                    

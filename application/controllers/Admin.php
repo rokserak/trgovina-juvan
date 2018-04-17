@@ -36,6 +36,19 @@ class Admin extends CI_Controller {
 		
 
 	}
+
+	public function uredi()
+	{
+		$this->load->helper('url');
+		$this->load->library('user_agent');
+        $info=$this->input->post(); 
+        $this->load->model('admin_model'); 
+		$this->admin_model->edit($info['ime'], $info['opis'], $info['cena'], $info['zaloga'], $info['slika'], $info['id']);
+		
+
+
+		$this->load->view('posodobiArtikel');
+	}
 	
 	
 	

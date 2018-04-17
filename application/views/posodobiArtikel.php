@@ -33,7 +33,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <a class="nav-link" href="http://localhost:8080/index.php/Kosarica/link">Dodaj artikel</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="http://localhost:8080/index.php/Kosarica/link2">BIzbriši artikel</a>
+                        <a class="nav-link" href="http://localhost:8080/index.php/Kosarica/link2">Izbriši artikel</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="http://localhost:8080/index.php/Kosarica/link3">Posodobi artikel</a>
@@ -42,7 +42,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 </div>
                    
                     <div class="btn-group ml-2">
-                                    <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <button type="button" class="btn gumb dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             <?php echo $_SESSION['uporabnik'] ?>
                                     </button>
                                     <div class="dropdown-menu dropdown-menu-right">
@@ -61,18 +61,67 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             </div>
 </div>      
             <div class="row">
-            <form>
-                <div class="row">
-                    <div class="col">
-                    <input type="text" class="form-control" placeholder="First name">
-                    </div>
-                    <div class="col">
-                    <input type="text" class="form-control" placeholder="Last name">
-                    </div>
-                </div>
-                </form>
 
-            </div>
+                <div class="col">
+
+                    <div class="dropdown">
+                        <button class="btn gumb dropdown-toggle" type="button" id="dropdownArtikli" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            {{izbran}}
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownArtikli">
+                            <button class="dropdown-item" type="button" ng-repeat="artikel in artikli" ng-click="fillForm($index)"> {{artikel.ime}} </button>
+                            
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col">
+
+                    <form action="/index.php/Admin/uredi" method="POST">
+
+                        <div class="form-group">
+                            <label for="ime">ID</label>
+                            <input class="form-control" type="text" name="id" value="{{artikli[izbranID].idartikel}}" readonly>
+                            
+                        </div>
+
+                        <div class="form-group">
+                            <label for="ime">Ime</label>
+                            <input type="text" class="form-control" name="ime" value="{{artikli[izbranID].ime}}">
+                            
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="opis">Opis</label>
+                            <input type="text" class="form-control" name="opis" value="{{artikli[izbranID].opis}}">
+                            
+                        </div>
+
+                        <div class="form-group">
+                            <label for="cena">Cena</label>
+                            <input type="text" class="form-control" name="cena" value="{{artikli[izbranID].cena}}">
+                            
+                        </div>
+
+                        <div class="form-group">
+                            <label for="zaloga">Zaloga</label>
+                            <input type="text" class="form-control" name="zaloga" value="{{artikli[izbranID].zaloga}}">
+                            
+                        </div>
+
+                        <div class="form-group">
+                            <label for="slika">Povezava do slike</label>
+                            <input type="text" class="form-control" name="slika" value="{{artikli[izbranID].slika}}">
+                            
+                        </div>
+
+                        
+
+                        <button type="submit" class="btn gumb">Uredi</button>
+                    </form>
+                
+                </div>
 
            
 
@@ -89,12 +138,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
     var app = angular.module("myapp", []);
                 app.controller("artikelCtrl", function($scope, $http){
-                    $http.get("http://localhost:8080/index.php/Artikli/admin").then(function(data) {
-                        console.log(data);
-                        $scope.uporabniki = data.data[0];
-                        $scope.kosarica = data.data[1];
-                        
+                    $http.get("http://localhost:8080/index.php/Artikli/getArtikli").then(function(data) {
+                        console.log('dela');
+                        $scope.artikli = data.data;
+                        $scope.izbran = 'izberi artikel';
+                        $scope.izbranID = null;
                     });
+
+                    $scope.fillForm = function(id){
+                        $scope.izbranID = id;
+                        $scope.izbran = $scope.artikli[id].ime;
+
+                        console.log($scope.izbranID);
+                    }
 
                     
 

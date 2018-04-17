@@ -15,6 +15,26 @@ class Admin_model extends CI_Model {
         
        
         
-	}
+    }
+    
+    public function edit($ime, $opis, $cena, $zaloga, $slika, $id)
+    {
+        $this->load->database();#povezemo na bazo
+        
+
+        $niz = 'UPDATE artikel
+                SET opis = "' . $opis . '", 
+                ime = "' . $ime . '", 
+                cena = ' . $cena . ', 
+                zaloga = ' . $zaloga . ', 
+                slika = "' . $slika . '" 
+                WHERE idartikel = ' . $id;
+        
+        $query=$this->db->query($niz);
+
+    }
 
 }
+
+
+?>
