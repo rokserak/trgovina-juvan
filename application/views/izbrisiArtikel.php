@@ -61,15 +61,27 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             </div>
 </div>      
             <div class="row">
-            <form>
-                <div class="row">
+
+            <form action="/index.php/Admin/izbrisi" method="POST">
+
                     <div class="col">
-                    <input type="text" class="form-control" placeholder="First name">
+
+                            <div class="form-check" ng-repeat="artikel in artikli">
+                                <input class="form-check-input" type="radio" name="id" id="option{{artikel.idartikel}}" value="{{artikel.idartikel}}" >
+                                <label class="form-check-label" for="option{{artikel.idartikel}}">
+                                    {{artikel.ime}}
+                                </label>
+                            </div>
+                                
+
                     </div>
+
                     <div class="col">
-                    <input type="text" class="form-control" placeholder="Last name">
+
+                        <button type="submit" class="btn gumb">Izbriši</button>
+
                     </div>
-                </div>
+
                 </form>
 
             </div>
@@ -89,10 +101,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
     var app = angular.module("myapp", []);
                 app.controller("artikelCtrl", function($scope, $http){
-                    $http.get("http://localhost:8080/index.php/Artikli/admin").then(function(data) {
-                        console.log(data);
-                        $scope.uporabniki = data.data[0];
-                        $scope.kosarica = data.data[1];
+                    $http.get("http://localhost:8080/index.php/Artikli/getArtikli").then(function(data) {
+                        console.log('dela');
+                        $scope.artikli = data.data;
                         
                     });
 

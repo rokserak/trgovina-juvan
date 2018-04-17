@@ -32,6 +32,7 @@ class Admin extends CI_Controller {
         $this->load->model('admin_model'); 
         $this->admin_model->vnesi($info['imeA'], $info['opis'], $info['cena'], $info['zaloga'], $info['link']);
 		
+		$this->load-view('novArtikel');
 
 		
 
@@ -49,7 +50,21 @@ class Admin extends CI_Controller {
 
 		$this->load->view('posodobiArtikel');
 	}
+
+
+	public function izbrisi()
+	{
+		$this->load->helper('url');
+		$this->load->library('user_agent');
+        $info=$this->input->post(); 
+        $this->load->model('admin_model'); 
+		$this->admin_model->delete($info['id']);
+		
+
+
+		$this->load->view('izbrisiArtikel');
 	
+	}
 	
 	
 

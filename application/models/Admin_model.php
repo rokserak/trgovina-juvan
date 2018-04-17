@@ -34,6 +34,22 @@ class Admin_model extends CI_Model {
 
     }
 
+    public function delete($id)
+    {
+        $this->load->database();#povezemo na bazo
+        
+        $niz = 'DELETE FROM kosarica 
+                WHERE artikel_idartikel = ' . $id;
+        
+        $query=$this->db->query($niz);
+
+        $niz = 'DELETE FROM artikel 
+                WHERE idartikel = ' . $id;
+        
+        $query=$this->db->query($niz);
+
+    }
+
 }
 
 
