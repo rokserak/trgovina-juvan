@@ -66,7 +66,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                         <h3 class="pl-3">Izdelki</h3>
                                         <div ng-repeat="kos in kosarica track by $index">
                                             <div class="dropdown-divider"></div>
-                                            <button class="dropdown-item" type="button">{{artikli[kos].ime}}</button>
+                                            <button class="dropdown-item" type="button">{{artikli[kos.artikel_idartikel].ime}}</button>
                                             
                                     </div>
                                 </div>
@@ -121,14 +121,26 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 app.controller("artikelCtrl", function($scope, $http){
                     $http.get("http://localhost:8080/index.php/Artikli/getArtikli").then(function(data) {
                         console.log('dela');
-                        $scope.artikli = data.data;
-                        $scope.kosarica = [];
-                        console.log(data.data[1]);
+                        $scope.artikli = data.data[0];
+                        $scope.kosarica = data.data[1];
+
+                        $scope.kosarica.forEach(function myFunction(item1) {
+                            $scope.artikli.forEach(function myFunction2(item2){
+                                
+                                if(item1.artikel_idartikel == item2.idartikel){
+                                    item2.zaloga -= 1;
+                                }
+                            });
+                        });
+                        
                     });
+
+                    
+                    
 
                     $scope.dodaj = function(id){
                         if($scope.artikli[id].zaloga != 0){
-                            $scope.kosarica.push(id);
+                            $scope.kosarica.push({artikel_idartikel: $scope.artikli[id].idartikel});
                             $scope.artikli[id].zaloga -= 1;
 
 

@@ -146,7 +146,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 app.controller("artikelCtrl", function($scope, $http){
                     $http.get("http://localhost:8080/index.php/Artikli/getArtikli").then(function(data) {
                         console.log('dela');
-                        $scope.artikli = data.data;
+                        $scope.artikli = data.data[0];
                         $scope.kosarica = [];
                     });
 

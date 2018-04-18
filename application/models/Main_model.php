@@ -6,25 +6,17 @@ class Main_model extends CI_Model {
 
     // Select user records
     $this->db->select('*');
-    $q = $this->db->get('artikel');
-    $results = $q->result_array();
-    //header('Content-Type: application/json');
+    $q1 = $this->db->get('artikel');
+    $results1 = $q1->result_array();
 
-    //$this->load->database(); //povezava v bazo
-    //$query = $this->db->query('select * from kosarica where ime="'.$ime.'" and geslo="'.$geslo.'"');
-
-    //$this->db->select('artikel_idartikel');
-    //$q2 = $this->db->get_where('kosarica', array('uporabniki_iduporabniki' => "1"));
-    //$results2 = $q2->result_array();
-
-    //$aa = array();
-    //foreach($results2 as $res){
-      //$aa.array_push($res->artikel_idartikel);
-    //}
-
-    //$vrni = array($results, $aa);
-    return $results;
+    $q2 = $this->db->query('SELECT * FROM kosarica WHERE uporabniki_iduporabniki = ' . $_SESSION['id']);
+    
+    $results2 = $q2->result_array();
+    
+    return [$results1, $results2];
   }
+
+  
 
   function dodaj($art, $id){
 
