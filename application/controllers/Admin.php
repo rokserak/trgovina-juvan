@@ -32,7 +32,7 @@ class Admin extends CI_Controller {
         $this->load->model('admin_model'); 
         $this->admin_model->vnesi($info['imeA'], $info['opis'], $info['cena'], $info['zaloga'], $info['link']);
 		
-		$this->load-view('novArtikel');
+		$this->load->view('novArtikel');
 
 		
 
