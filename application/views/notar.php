@@ -66,7 +66,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                         <h3 class="pl-3">Izdelki</h3>
                                         <div ng-repeat="kos in kosarica track by $index">
                                             <div class="dropdown-divider"></div>
-                                            <button class="dropdown-item" type="button">{{artikli[kos.artikel_idartikel].ime}}</button>
+                                            <button class="dropdown-item" type="button">{{artikli[kos.artikel_idartikel - 1].ime}}</button>
                                             
                                     </div>
                                 </div>

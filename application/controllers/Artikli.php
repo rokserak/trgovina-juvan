@@ -28,12 +28,13 @@ class Artikli extends CI_Controller {
     echo json_encode($data);
   }
 
-  public function getKosarica(){
+  public function getArtikli1(){
     // get data
-    $data = $this->Main_model->getKosarica();
+    $data = $this->Main_model->getArtikli1();
     
     echo json_encode($data);
   }
+  
 
 
   public function admin(){

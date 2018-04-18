@@ -16,6 +16,18 @@ class Main_model extends CI_Model {
     return [$results1, $results2];
   }
 
+
+  function getArtikli1(){
+    
+        // Select user records
+        $this->db->select('*');
+        $q1 = $this->db->get('artikel');
+        $results1 = $q1->result_array();
+    
+        
+        return $results1;
+      }
+
   
 
   function dodaj($art, $id){
